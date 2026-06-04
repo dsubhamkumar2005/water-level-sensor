@@ -28,5 +28,3 @@ This project demonstrates a Water Level Monitoring System using Arduino Uno and 
 - Industrial water storage systems
 - Water conservation and monitoring
 
-## Author
-D Subham Kumar
