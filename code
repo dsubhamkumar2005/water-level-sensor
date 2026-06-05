@@ -1,0 +1,56 @@
+// Outputs
+const int greenLED = 2;
+const int yellowLED = 3;
+const int redLED   = 4;
+const int buzzer   = 5;
+
+// Inputs (buttons wired to GND)
+const int lowSwitch  = 6;
+const int medSwitch  = 7;
+const int highSwitch = 8;
+
+void setup() {
+  pinMode(greenLED, OUTPUT);
+  pinMode(yellowLED, OUTPUT);
+  pinMode(redLED,   OUTPUT);
+  pinMode(buzzer,   OUTPUT);
+
+  // Use Arduino internal pull-ups
+  pinMode(lowSwitch,  INPUT_PULLUP);
+  pinMode(medSwitch,  INPUT_PULLUP);
+  pinMode(highSwitch, INPUT_PULLUP);
+
+  // Start OFF
+  digitalWrite(greenLED, LOW);
+  digitalWrite(yellowLED, LOW);
+  digitalWrite(redLED, LOW);
+  digitalWrite(buzzer, LOW);
+}
+
+void loop() {
+  // Read switches: LOW = pressed
+  int lowState  = digitalRead(lowSwitch);
+  int medState  = digitalRead(medSwitch);
+  int highState = digitalRead(highSwitch);
+
+  // Default OFF
+  digitalWrite(greenLED, LOW);
+  digitalWrite(yellowLED, LOW);
+  digitalWrite(redLED, LOW);
+  digitalWrite(buzzer, LOW);
+
+  // Cascade logic
+  if (highState == LOW) { // high button pressed
+    digitalWrite(greenLED, HIGH);
+    digitalWrite(yellowLED, HIGH);
+    digitalWrite(redLED, HIGH);
+    digitalWrite(buzzer, HIGH);
+  } 
+  else if (medState == LOW) { // medium button pressed
+    digitalWrite(greenLED, HIGH);
+    digitalWrite(yellowLED, HIGH);
+  } 
+  else if (lowState == LOW) { // low button pressed
+    digitalWrite(greenLED, HIGH);
+  }
+}
